@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^5.0.29",
     "@clerk/nextjs": "^5.3.3",
     "@next/font": "^14.2.6",
     "@stripe/stripe-js": "^4.3.0",
