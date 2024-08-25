@@ -6,8 +6,11 @@ import { NextResponse } from "next/server"
 import { Webhook } from "svix"
 
 export async function POST(req: Request) {
-  // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
+  console.log("Webhook POST handler triggered!")
+    // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
+
+  console.log("WEBOOK SECRET", WEBHOOK_SECRET)
 
   if (!WEBHOOK_SECRET) {
     throw new Error(
@@ -60,6 +63,15 @@ export async function POST(req: Request) {
     const { id, email_addresses, image_url, first_name, last_name, username } =
       evt.data
 
+    console.log("Received data:", {
+      id,
+      email_addresses,
+      image_url,
+      first_name,
+      last_name,
+      username,
+    })
+
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
@@ -70,6 +82,8 @@ export async function POST(req: Request) {
     }
 
     const newUser = await createUser(user)
+
+    console.log("HIER")
 
     // Set public metadata
     if (newUser) {

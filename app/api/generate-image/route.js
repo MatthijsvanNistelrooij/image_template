@@ -21,7 +21,7 @@ export async function POST(req) {
         validateStatus: undefined,
         responseType: "arraybuffer",
         headers: {
-          Authorization: `Bearer sk-9zBThlAGTNiBYUdNQisxlPonjF8Q3BZiznIJ0jdVirbsOpO9`, // Ensure this is set correctly
+          Authorization: `Bearer ${vercel.env.STABILITY_API_KEY}`, 
           Accept: "image/*",
         },
       }

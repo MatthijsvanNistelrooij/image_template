@@ -9,6 +9,8 @@ import { CreateUserParams, UpdateUserParams } from "@/types"
 
 // CREATE
 export async function createUser(user: CreateUserParams) {
+    console.log("CREATE USER");
+    console.log("User data to save:", user); // Log the user data
   try {
     console.log("Webhook received with data:", user) // Log received data
 
