@@ -4,7 +4,6 @@ app.post('/api/purchase-tokens', ClerkExpressWithAuth(), async (req, res) => {
   const { userId } = req.auth;
   const { tokenPackage } = req.body; // e.g., 10, 20, 100 tokens
 
-  // Find the user in your database
   let user = await User.findOne({ clerkId: userId });
 
   // Define token packages and prices (in cents)
