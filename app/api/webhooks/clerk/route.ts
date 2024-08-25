@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions"
 import { clerkClient, WebhookEvent } from "@clerk/nextjs/server"
 import { headers } from "next/headers"
@@ -9,9 +9,7 @@ export async function POST(req: Request) {
   console.log("Webhook POST handler triggered!")
     // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
-
-  console.log("WEBOOK SECRET", WEBHOOK_SECRET)
-
+  
   if (!WEBHOOK_SECRET) {
     throw new Error(
       "Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local"

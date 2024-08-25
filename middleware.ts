@@ -1,12 +1,18 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware } from "@clerk/nextjs/server"
 
-export default clerkMiddleware();
+export default clerkMiddleware({
+  // You can configure options here, such as `publicRoutes` if needed.
+  // However, `publicRoutes` is not a valid option in the newer versions of Clerk middleware.
+})
 
 export const config = {
+  // Adjust this matcher as per your requirements
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
-    '/(api|trpc)(.*)',
+    // Match all routes except static files and Next.js internals
+    "/((?!.+\\.[\\w]+$|_next).*)",
+    // Optionally, include specific public routes if necessary
+    "/",
+    "/api/webhooks/clerk",
+    "/api/webhooks/stripe",
   ],
-};
+}
