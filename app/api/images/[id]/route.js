@@ -18,12 +18,10 @@ export async function GET(req, { params }) {
       })
     }
 
-    // Handle case where image is a Buffer or Base64 string
     let imageBase64
     if (Buffer.isBuffer(image.image)) {
       imageBase64 = image.image.toString("base64")
     } else if (typeof image.image === "string") {
-      // If the image is already a Base64 string
       imageBase64 = image.image
     } else {
       console.error("Image field is not a Buffer or string:", image.image)
@@ -52,13 +50,12 @@ export async function GET(req, { params }) {
   }
 }
 
-// PUT request to update image details
 export async function PUT(req, { params }) {
   await connectToDatabase()
   const { id } = params
   const body = await req.json()
 
-  console.log("Received PUT request with id:", id, "and body:", body) // Debugging statement
+  console.log("Received PUT request with id:", id, "and body:", body)
 
   try {
     if (!id) {
