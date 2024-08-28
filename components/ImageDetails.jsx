@@ -6,6 +6,7 @@ import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import UserImages from "./UserImages"
+import LoaderSpinner from "./LoaderSpinner"
 
 const ImageDetails = ({ user }) => {
   const { id } = useParams()
@@ -36,7 +37,7 @@ const ImageDetails = ({ user }) => {
     }
   }, [id])
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <LoaderSpinner />
   if (error) return <p>Error: {error}</p>
   if (!imageDetails) return <p>Image not found</p>
 
@@ -72,7 +73,6 @@ const ImageDetails = ({ user }) => {
           />
 
           <div className="flex w-full flex-col gap-5 max-md:items-center md:gap-9">
-       
             <article className="flex flex-col gap-2 max-md:items-center">
               <h1 className="text-white-3 text-sm">created by:</h1>
               <Link href={"/profile"} className="flex flex-row gap-2">
@@ -84,7 +84,7 @@ const ImageDetails = ({ user }) => {
                   className="size-[30px] rounded-full object-cover"
                 />
                 <h2 className="text-16 font-normal text-white-3 mt-1">
-                 {user?.username}
+                  {user?.username}
                 </h2>
               </Link>
             </article>
