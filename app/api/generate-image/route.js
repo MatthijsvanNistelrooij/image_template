@@ -6,8 +6,7 @@ import Image from "@/models/Image"
 
 export async function POST(req) {
   try {
-    const { prompt } = await req.json()
-    console.log("Received prompt:", prompt)
+    const { prompt, clerkId } = await req.json()
 
     const payload = {
       prompt,
@@ -21,13 +20,11 @@ export async function POST(req) {
         validateStatus: undefined,
         responseType: "arraybuffer",
         headers: {
-          Authorization: `Bearer ${vercel.env.STABILITY_API_KEY}`, 
+          Authorization: `Bearer ${process.env.STABILITY_API_KEY}`,
           Accept: "image/*",
         },
       }
     )
-
-    console.log("Response from Stability AI:", response.status)
 
     if (response.status === 200) {
       await connectToDatabase()
@@ -37,6 +34,8 @@ export async function POST(req) {
         prompt,
         image: imageBuffer,
         createdAt: new Date(),
+        clerkId: clerkId,
+        views: 0,
       })
 
       await newImage.save()

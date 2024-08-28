@@ -1,6 +1,6 @@
 // models/Post.js
 
-import mongoose from "mongoose";
+import mongoose from "mongoose"
 
 const PostSchema = new mongoose.Schema({
   title: {
@@ -15,6 +15,10 @@ const PostSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-});
+  userId: {
+    type: String,
+    required: true,
+  },
+})
 
-export default mongoose.models.Post || mongoose.model("Post", PostSchema);
+export default mongoose.models.Post || mongoose.model("Post", PostSchema)

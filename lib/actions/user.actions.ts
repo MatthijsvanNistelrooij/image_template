@@ -5,21 +5,16 @@ import { revalidatePath } from "next/cache"
 import { handleError } from "../utils"
 import User from "@/models/User"
 import { connectToDatabase } from "../mongodb"
-import { CreateUserParams, UpdateUserParams } from "@/types"
 
 // CREATE
 export async function createUser(user: CreateUserParams) {
-    console.log("CREATE USER");
-    console.log("User data to save:", user); // Log the user data
   try {
-    console.log("Webhook received with data:", user) // Log received data
-
     await connectToDatabase()
+
     const newUser = await User.create(user)
 
     return JSON.parse(JSON.stringify(newUser))
   } catch (error) {
-    console.error("Error creating user:", error)
     handleError(error)
   }
 }
@@ -28,7 +23,6 @@ export async function createUser(user: CreateUserParams) {
 export async function getUserById(userId: string) {
   try {
     await connectToDatabase()
-    console.log("Connected to DB successfully")
 
     const user = await User.findOne({ clerkId: userId })
 
@@ -36,8 +30,6 @@ export async function getUserById(userId: string) {
 
     return JSON.parse(JSON.stringify(user))
   } catch (error) {
-    console.log("Querying user with clerkId:", userId)
-
     handleError(error)
   }
 }
@@ -87,7 +79,7 @@ export async function updateCredits(userId: string, creditFee: number) {
     await connectToDatabase()
 
     const updatedUserCredits = await User.findOneAndUpdate(
-      { _id: userId },
+      { clerkId: userId },
       { $inc: { creditBalance: creditFee } },
       { new: true }
     )

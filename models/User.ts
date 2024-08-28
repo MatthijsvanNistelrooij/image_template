@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models } from "mongoose"
 
 const UserSchema = new Schema({
   clerkId: {
@@ -34,8 +34,8 @@ const UserSchema = new Schema({
     type: Number,
     default: 10,
   },
-});
+})
 
-const User = models?.User || model("User", UserSchema);
+const User = models?.User || model("User", UserSchema)
 
-export default User;
+export default User
