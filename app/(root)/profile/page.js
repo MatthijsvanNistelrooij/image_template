@@ -4,6 +4,7 @@ import { redirect } from "next/navigation"
 import { getUserById } from "@/lib/actions/user.actions"
 import Link from "next/link"
 import UserImages from "@/components/UserImages"
+import LoaderSpinner from "@/components/LoaderSpinner"
 
 const Profile = async () => {
   const { userId } = auth()
