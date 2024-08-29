@@ -6,13 +6,16 @@ import { AiFillHome, AiOutlineArrowLeft, AiOutlineOpenAI } from "react-icons/ai"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import LoaderSpinner from "./LoaderSpinner"
+import { useRouter } from "next/navigation"
 
 const Generate = ({ userId, creditFee, creditBalance }) => {
   const [prompt, setPrompt] = useState("")
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState("")
 
-const clerkId = userId
+  const router = useRouter()
+
+  const clerkId = userId
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -41,6 +44,7 @@ const clerkId = userId
       setMessage("An error occurred while generating the image.")
     } finally {
       setLoading(false)
+      router.push("/profile")
     }
   }
 
