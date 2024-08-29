@@ -64,13 +64,12 @@ export async function PUT(req, { params }) {
 
     const image = await Image.findByIdAndUpdate(id, body, { new: true })
     if (!image) {
-      console.error("Image not found for id:", id) // Debugging statement
+      console.error("Image not found for id:", id)
       return new Response(JSON.stringify({ error: "Image not found" }), {
         status: 404,
       })
     }
 
-    // Convert Buffer to Base64 string
     const imageBase64 = image?.image?.toString("base64")
 
     return new Response(
@@ -78,19 +77,18 @@ export async function PUT(req, { params }) {
       { status: 200 }
     )
   } catch (error) {
-    console.error("Error in PUT request:", error) // Debugging statement
+    console.error("Error in PUT request:", error)
     return new Response(JSON.stringify({ error: "Failed to update image" }), {
       status: 500,
     })
   }
 }
 
-// DELETE request to delete an image
 export async function DELETE(req, { params }) {
   await connectToDatabase()
   const { id } = params
 
-  console.log("Received DELETE request with id:", id) // Debugging statement
+  console.log("Received DELETE request with id:", id)
 
   try {
     if (!id) {
@@ -99,7 +97,7 @@ export async function DELETE(req, { params }) {
 
     const image = await Image.findByIdAndDelete(id)
     if (!image) {
-      console.error("Image not found for id:", id) // Debugging statement
+      console.error("Image not found for id:", id)
       return new Response(JSON.stringify({ error: "Image not found" }), {
         status: 404,
       })
@@ -109,7 +107,7 @@ export async function DELETE(req, { params }) {
       { status: 200 }
     )
   } catch (error) {
-    console.error("Error in DELETE request:", error) // Debugging statement
+    console.error("Error in DELETE request:", error)
     return new Response(JSON.stringify({ error: "Failed to delete image" }), {
       status: 500,
     })
