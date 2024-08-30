@@ -44,7 +44,6 @@ const Generate = ({ userId, creditFee, creditBalance }) => {
       setMessage("An error occurred while generating the image.")
     } finally {
       setLoading(false)
-      router.push("/profile")
     }
   }
 
