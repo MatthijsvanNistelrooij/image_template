@@ -44,10 +44,6 @@ const ImageDetails = ({ user }) => {
   const { image, prompt, clerkId } = imageDetails
   const isOwner = user.clerkId === clerkId
 
-  console.log("user clerkid", user.clerkId)
-  console.log("image clerkid", clerkId)
-  console.log("isOwner", isOwner)
-
   const handleDelete = async () => {
     try {
       await fetch(`/api/images/${id}`, {
