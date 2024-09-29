@@ -6,8 +6,8 @@ import { ClerkProvider } from "@clerk/nextjs"
 const manrope = Manrope({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "AI Imager with Stripe",
-  description: "Generate images with AI",
+  title: "Image Generater",
+  description: "Generate images with Stability AI",
   icons: {
     icon: "/icons/logo.svg",
   },
