@@ -5,7 +5,7 @@ import ImageCard from "./ImageCard"
 import LoaderSpinner from "./LoaderSpinner"
 
 const UserImages = () => {
-  const [images, setImages] = useState<any[]>([]) // Adjust type as needed
+  const [images, setImages] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string>("")
 
@@ -19,7 +19,6 @@ const UserImages = () => {
         const data = await response.json()
         setImages(data)
       } catch (error) {
-        // Type assertion
         setError((error as Error).message)
       } finally {
         setLoading(false)

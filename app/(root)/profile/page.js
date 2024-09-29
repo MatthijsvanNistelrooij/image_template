@@ -15,6 +15,8 @@ const Profile = async () => {
 
   if (!user || !userId) return <LoaderSpinner />
 
+  console.log("user", user)
+
   return (
     <>
       <section className="mt-9 flex flex-col">
@@ -43,7 +45,7 @@ const Profile = async () => {
                 </h2>
               </figure>
               <h1 className="text-32 font-extrabold tracking-[-0.32px] text-white-1">
-                {user?.firstName}
+                {user?.username}
               </h1>
               <h1 className="text-white-1 text-20">
                 Credits: {user.creditBalance}
